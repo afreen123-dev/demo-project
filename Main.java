@@ -1,99 +1,62 @@
-package AllAssignments;
-import java.util.Arrays;
-import java.util.List;
+package com.project;
 
-class Stack
-{
-	private int[] arr;
-	private int capacity;
-	private int top1, top2;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-	// Constructor
-	public Stack(int n)
-	{
-		capacity = n;
-		arr = new int[n];
-		top1 = -1;
-		top2 = n;
-	}
+public class Main extends example{
+	public static void main(String[] args) throws Exception {
+		
+			System.out.println("**************************Welcome to LockedMe.com***********************");
+		System.out.println("---------------------------------------------------------------------");
+		System.out.println("%%Your name%% welcomes you on behalf of LockedMe.com");
+		System.out.println("-----------------------------------------------------------------------");
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Please enter your name:");
+		String name=scan.next();
+		//Ask for user details
+		Main obj=new Main();
+		
+		while(true) {
+			System.out.println("*****************************************************************");
+			System.out.println("------------------------------Menu------------------------------");
+			
+			System.out.println("1.Sorting the list of files");
+			System.out.println("2.Add a file to the application directory");
+			System.out.println("3.Delete a file from application directory");
+			System.out.println("4.To see if specified file is present in application directory");
+			//System.out.println("5.Display contents of specified file");
+			//System.out.println("6.To see your account details");
+			System.out.println("0.Exit from LockedMe.com");
+			System.out.println();
+			System.out.println("Enter your choice:");
+			int choice = scan.nextInt();
 
-	// Function to insert a given element into the first stack
-	public void push1(int key)
-	{
-		// check if the array is full
-		if (top1 + 1 == top2)
-		{
-			System.out.println("Stack Overflow");
-			System.exit(-1);
+			switch(choice){
+			case 1:
+				System.out.println("*******************List of files sorted****************");
+				obj.SortFileNames();
+				break;
+			case 2:
+				System.out.println("*********Welcome to adding a file page!****************");
+				obj.addFile();
+				break;
+			case 3:
+				System.out.println("***********Deleting a file page********************** ");
+				obj.deleteFiles();
+				break;
+			case 4:
+				System.out.println("***************Checking the location of file************");
+				obj.SearchFile();
+				break;
+			case 0:
+				System.out.println("Closing LockedMe.com");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("You have given wrong input! \n\nPlease re-enter your choice\n\n");
+				
+				
+			}
 		}
-
-		top1++;
-		arr[top1] = key;
-	}
-
-	// Function to insert a given element into the second stack
-	public void push2(int key)
-	{
-		// check if the array is full
-		if (top1 + 1 == top2)
-		{
-			System.out.println("Stack Overflow");
-			System.exit(-1);
-		}
-
-		top2--;
-		arr[top2] = key;
-	}
-
-	// Function to pop an element from the first stack
-	public int pop1()
-	{
-		// if no elements are left in the array
-		if (top1 < 0)
-		{
-			System.out.println("Stack UnderFlow");
-			System.exit(-1);
-		}
-
-		int top = arr[top1];
-		top1--;
-		return top;
-	}
-
-	// Function to pop an element from the second stack
-	public int pop2()
-	{
-		// if no elements are left in the array
-		if (top2 >= capacity)
-		{
-			System.out.println("Stack UnderFlow");
-			System.exit(-1);
-		}
-
-		int top = arr[top2];
-		top2++;
-		return top;
-	}
-}
-
-class Main
-{
-	public static void main(String[] args)
-	{
-		List<Integer> list1 = Arrays.asList(1, 2, 3, 4, 5);
-		List<Integer> list2 = Arrays.asList( 6, 7, 8, 9, 10);
-
-		Stack stack = new Stack(list1.size() + list2.size());
-
-		for (int i: list1) {
-			stack.push1(i);
-		}
-
-		for (int j: list2) {
-			stack.push2(j);
-		}
-
-		System.out.println("Popping element from the first stack : " + stack.pop1());
-		System.out.println("Popping element from the second stack : " + stack.pop2());
 	}
 }
